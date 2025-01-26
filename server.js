@@ -1,24 +1,23 @@
-const fs = require("fs");
+const http = require("http");
 const path = require("path");
+const fs = require("fs");
+const fsPromises = require("fs").promises;
 
-fs.readFile(path.join(__dirname, "files", "starter.txt"), (err, data) => {
-	if (err) {
-		console.error(err);
-		return;
-	}
-	console.log(data.toString());
+const logEvents = require("./logEvents");
+const EventEmitter = require("events");
+const eventEmitter = new EventEmitter();
+
+const PORT = process.env.PORT || 3500;
+const server = http.createServer((req, res) => {
+	console.log(req.url, req.method);
 });
 
-console.log("Reading file...");
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
-fs.writeFile(
-	path.join(__dirname, "files", "reply.txt"),
-	"Thank You for the reply",
-	(err) => {
-		if (err) {
-			console.error(err);
-			return;
-		}
-		console.log("File written successfully");
-	}
-);
+// eventEmitter.on("log", (msg) => {
+// 	logEvents(msg);
+// });
+
+// setTimeout(() => {
+// 	eventEmitter.emit("log", "Log Event Emitted");
+// }, 2000);
