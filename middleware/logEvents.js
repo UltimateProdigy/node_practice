@@ -31,3 +31,7 @@ const logger = (req, res, next) => {
 };
 
 module.exports = { logger, logEvents };
+
+// In this example, we have a middleware function called logEvents that takes two parameters: message and fileName.
+// The logEvents function generates a log item with the current date and time, a unique identifier, and the message provided.
+// The log item is then appended to a log file with the specified fileName.
