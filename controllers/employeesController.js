@@ -23,7 +23,12 @@ const createNewEmployee = (req, res) => {
 			.json({ message: "First Name and Last Name is required" });
 	}
 	data.setEmployee([...data.employees, newEmployee]);
-	res.status(201).json(data.employees);
+	res.status(201).json({
+		message: "Employee Created",
+		id: newEmployee.id,
+		firstname: `${req.body.firstname}`,
+		lastname: `${req.body.lastname}`,
+	});
 };
 
 const updateEmployee = (req, res) => {
