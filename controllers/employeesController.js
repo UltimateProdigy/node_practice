@@ -12,10 +12,11 @@ const getAllEmployees = (req, res) => {
 };
 
 const createNewEmployee = (req, res) => {
+	const { firstname, lastname } = req.body;
 	const newEmployee = {
 		id: uuid(),
-		firstname: req.body.firstname,
-		lastname: req.body.lastname,
+		firstname: firstname,
+		lastname: lastname,
 	};
 	if (!newEmployee.firstname || !newEmployee.lastname) {
 		return res
@@ -26,44 +27,41 @@ const createNewEmployee = (req, res) => {
 	res.status(201).json({
 		message: "Employee Created",
 		id: newEmployee.id,
-		firstname: `${req.body.firstname}`,
-		lastname: `${req.body.lastname}`,
+		firstname: `${firstname}`,
+		lastname: `${lastname}`,
 	});
 };
 
 const updateEmployee = (req, res) => {
-	const employee = data.employees.find((emp) => emp.id === req.body.id);
+	const { firstname, lastname, id } = req.body;
+	const employee = data.employees.find((emp) => emp.id === id);
 	if (!employee) {
 		return res
 			.status(400)
 			.json({ message: `Employee ID ${req.body.id} not found` });
 	}
-	if (req.body.firstname) employee.firstname = req.body.firstname;
-	if (req.body.lastname) employee.lastname = req.body.lastname;
+	if (firstname) employee.firstname = firstname;
+	if (lastname) employee.lastname = lastname;
 	data.setEmployee([...data.employees]);
 	res.status(201).json(data.employees);
 };
 
 const deleteEmployee = (req, res) => {
-	const employee = data.employees.find((emp) => emp.id === req.body.id);
+	const { id } = req.body;
+	const employee = data.employees.find((emp) => emp.id === id);
 	if (!employee) {
-		return res
-			.status(400)
-			.json({ message: `Employee ID ${req.body.id} not found` });
+		return res.status(400).json({ message: `Employee ID ${id} not found` });
 	}
-	const filteredEmployees = data.employees.filter(
-		(emp) => emp.id === req.body.id
-	);
+	const filteredEmployees = data.employees.filter((emp) => emp.id === id);
 	data.setEmployee([...filteredEmployees]);
-	res.json({ id: req.body.id });
+	res.json({ id: id });
 };
 
 const getEmployee = (req, res) => {
-	const employee = data.employees.find((emp) => emp.id === req.params.id);
+	const { id } = req.params;
+	const employee = data.employees.find((emp) => emp.id === id);
 	if (!employee) {
-		return res
-			.status(400)
-			.json({ message: `Employee ID ${req.params.id} not found` });
+		return res.status(400).json({ message: `Employee ID ${id} not found` });
 	}
 	res.json(employee);
 };
