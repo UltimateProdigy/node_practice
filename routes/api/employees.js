@@ -11,7 +11,7 @@ const {
 
 router
 	.route("/")
-	.get(verifyJWT, getAllEmployees)
+	.get(getAllEmployees)
 	.post(createNewEmployee)
 	.put(updateEmployee)
 	.delete(deleteEmployee);

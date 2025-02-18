@@ -54,7 +54,7 @@ const deleteEmployee = (req, res) => {
 	}
 	const filteredEmployees = data.employees.filter((emp) => emp.id === id);
 	data.setEmployee([...filteredEmployees]);
-	res.json({ id: id });
+	res.json({ id: id, message: `User ID ${id} deleted` });
 };
 
 const getEmployee = (req, res) => {
