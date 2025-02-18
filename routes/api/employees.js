@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { verifyJWT } = require("../../middleware/verifyJWT");
 const {
 	createNewEmployee,
 	getAllEmployees,
@@ -7,7 +8,6 @@ const {
 	deleteEmployee,
 	getEmployee,
 } = require("../../controllers/employeesController");
-
 
 router
 	.route("/")
