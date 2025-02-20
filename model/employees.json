@@ -1,31 +1,25 @@
 [
 	{
-		"id": 1,
 		"firstname": "Sade",
 		"lastname": "Okoya"
 	},
 	{
-		"id": 2,
 		"firstname": "Tunde",
 		"lastname": "Onakpoya"
 	},
 	{
-		"id": 3,
 		"firstname": "Ayo",
 		"lastname": "Adigun"
 	},
 	{
-		"id": 4,
 		"firstname": "Ife",
 		"lastname": "Taiwo"
 	},
 	{
-		"id": 5,
 		"firstname": "Emma",
 		"lastname": "Akinola"
 	},
 	{
-		"id": 6,
 		"firstname": "Favor",
 		"lastname": "Adigun"
 	}

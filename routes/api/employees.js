@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const roles = require("../../config/roles");
-const { verifyRoles } = "../../middleware/verifyRoles";
+const { verifyRoles } = require("../../middleware/verifyRoles");
 const {
 	createNewEmployee,
 	getAllEmployees,
