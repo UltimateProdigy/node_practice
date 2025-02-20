@@ -28,6 +28,7 @@ const handleCreateUser = async (req, res) => {
 			// id: uuid(),
 			username: username,
 			password: hashedPwd,
+			roles: { user: 5591 },
 		};
 		data.setUser([...data.users, newUser]);
 		await fsPromises.writeFile(

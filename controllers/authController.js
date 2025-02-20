@@ -24,8 +24,14 @@ const authenticateUser = async (req, res) => {
 		return res.status(401).json({ message: "Incorrect Password" });
 	}
 	if (matchPwd) {
+		const roles = Object.values(user.roles);
 		const accessToken = jwt.sign(
-			{ username: user.username },
+			{
+				UserInfo: {
+					username: user.username,
+					roles: roles,
+				},
+			},
 			process.env.ACCESS_TOKEN_SECRET,
 			{
 				expiresIn: "30s",

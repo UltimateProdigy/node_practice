@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const { verifyJWT } = require("../../middleware/verifyJWT");
+const roles = require("../../config/roles");
+const { verifyRoles } = "../../middleware/verifyRoles";
 const {
 	createNewEmployee,
 	getAllEmployees,
@@ -12,9 +13,9 @@ const {
 router
 	.route("/")
 	.get(getAllEmployees)
-	.post(createNewEmployee)
-	.put(updateEmployee)
-	.delete(deleteEmployee);
+	.post(verifyRoles(roles.admin), createNewEmployee)
+	.put(verifyRoles(roles.admin), updateEmployee)
+	.delete(verifyRoles(roles.admin), deleteEmployee);
 
 router.route("/:id").get(getEmployee);
 
